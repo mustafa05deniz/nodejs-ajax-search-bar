@@ -107,7 +107,7 @@ index.ejs
 </div>
 </pre>
 
-modal load when you click search box or modal unload and visibility hidden when you click without search box 
+<h2>modal load when you click search box or modal unload and visibility hidden when you click without search box </h2>
 <pre>
 var $modal = $('div.load');
     $('#search').click(function () {
