@@ -63,18 +63,18 @@ app.post('/search', cors(corsOptions),function(req,res){
                 data.push(rows[i]);
               }
               res.end(JSON.stringify(data));
-            });
-        });
+	});
+});
 </pre>
 <img src="http://kodizim.com/wp-content/uploads/2017/08/entegre2.png" alt="" width="364" height="444" class="aligncenter size-full wp-image-640" />
 <h2>Client Side</h2>
 <pre>index.ejs</pre>
 <pre>
 <div class="wrapper">
-		<div class="box">
-			<div class="row row-offcanvas row-offcanvas-left">
-            <div class="column col-sm-12 col-xs-11" id="main">
-              	<div class="navbar navbar-blue navbar-static-top">  
+	<div class="box">
+	<div class="row row-offcanvas row-offcanvas-left">
+		<div class="column col-sm-12 col-xs-11" id="main">
+		<div class="navbar navbar-blue navbar-static-top">  
                     <div class="navbar-header">
                     	<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
 	                        <span class="sr-only">Toggle</span>
