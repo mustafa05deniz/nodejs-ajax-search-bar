@@ -107,7 +107,7 @@ app.post('/search', cors(corsOptions),function(req,res){
 </div>
 </pre>
 
-<em>modal load when you click search box or modal unload and visibility hidden when you click without search box </em>
+modal load when you click search box or modal unload and visibility hidden when you click without search box 
 <pre>
 var $modal = $('div.load');
     $('#search').click(function () {
@@ -123,7 +123,7 @@ var $modal = $('div.load');
     });
 </pre>
 
-<h3><pre>Load element from routes.js http://localhost/search</pre></h3>
+<h3>Load element from routes.js http://localhost/search</h3>
 <pre>
  $( document ).ready(function() {
       var key ="";
