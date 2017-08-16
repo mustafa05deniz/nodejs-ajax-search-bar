@@ -4,7 +4,7 @@ nodejs ajax search bar with javascript ,juquery and mysql database you can first
 <h2><a href="http://project3.kodizim.com" target="_blank">DEMO project3.kodizim.com</a> </h2> 
 Requirements
 <h2>Server Side </h2>
-<pre>database.js</pre>
+<h2database.js</h2>
 <pre>
 module.exports = {
     'connection': {
@@ -50,22 +50,7 @@ for security
 </pre>
 
 <h2>routes.js</h2>
-<pre>
-app.post('/search', cors(corsOptions),function(req,res){
-        console.log(req);
-        connection.query('SELECT username from users where username like "%'+req.body.value+'%"', function(err, rows, fields) {
-            if (err) throw err;
-            var data=[];
-            console.log(rows);
-            for(i=0;i<rows.length;i++)
-              {
-                  console.log(rows[i]);
-                data.push(rows[i]);
-              }
-              res.end(JSON.stringify(data));
-	});
-});
-</pre>
+
 <img src="http://kodizim.com/wp-content/uploads/2017/08/entegre2.png" alt="" width="364" height="444" class="aligncenter size-full wp-image-640" />
 <h2>Client Side</h2>
 
@@ -86,40 +71,6 @@ var $modal = $('div.load');
     });
 </pre>
 
-<h3>Load element from routes.js http://localhost/search</h3>
-<pre>
- $( document ).ready(function() {
-      var key ="";
-      $("#search").on("change paste keyup", function() {
-        var deger ="";
-        if($(this).val() == ""){
-          console.log("boş");
-        }
-        else{
-          document.getElementById("loader").style.visibility = "visible";
-          deger = $(this).val();
-          
-          data={}
-          data.x=deger;
-          $.ajax({
-            type: "POST",
-            url: 'http://project.kodizim.com:3000/search',
-            data:  data,
-            success: function(data) {
-              document.getElementById("loader").style.visibility = "hidden";
-              var obj = JSON.parse(data);
-              console.log("obj"+obj);
-              $( ".username" ).remove();
-              obj.forEach(function(element) {
-                console.log(element);
-                $('.deneme').append("<div class='username'><img width='50px;' height='60px;' src='http://project.kodizim.com:3000/public/img/"+element.username+".jpg'/>"+element.username+"</div> ")
-              }, this);
-              
-            }
-          });
-        }
-      });
-    });
-</pre>
+
 
 
