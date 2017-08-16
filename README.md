@@ -50,7 +50,7 @@ for security
 </pre>
 
 <h2>routes.js</h2>
-<pre>
+
 app.post('/search', cors(corsOptions),function(req,res){
         console.log(req);
         connection.query('SELECT username from users where username like "%'+req.body.value+'%"', function(err, rows, fields) {
@@ -65,7 +65,7 @@ app.post('/search', cors(corsOptions),function(req,res){
               res.end(JSON.stringify(data));
 	});
 });
-</pre>
+
 <img src="http://kodizim.com/wp-content/uploads/2017/08/entegre2.png" alt="" width="364" height="444" class="aligncenter size-full wp-image-640" />
 <h2>Client Side</h2>
 index.ejs
