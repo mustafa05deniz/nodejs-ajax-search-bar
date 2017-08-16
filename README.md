@@ -68,44 +68,7 @@ app.post('/search', cors(corsOptions),function(req,res){
 
 <img src="http://kodizim.com/wp-content/uploads/2017/08/entegre2.png" alt="" width="364" height="444" class="aligncenter size-full wp-image-640" />
 <h2>Client Side</h2>
-index.ejs
-<pre>
-<div class="wrapper">
-	<div class="box">
-	<div class="row row-offcanvas row-offcanvas-left">
-		<div class="column col-sm-12 col-xs-11" id="main">
-		<div class="navbar navbar-blue navbar-static-top">  
-                    <div class="navbar-header">
-                    	<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-	                        <span class="sr-only">Toggle</span>
-	                        <span class="icon-bar"></span>
-	          				      <span class="icon-bar"></span>
-	          				      <span class="icon-bar"></span></button>
-                    <a href="/" class="navbar-brand logo">l</a>
-                  	</div>
-                    <form class="navbar-form navbar-left">
-                        <div class="input-group input-group-sm" style="width:360px;">
-                          <input type="text" class="form-control"  placeholder="search" name="srch-term" id="search">
-                        </div>
-                    </form>
-                    <ul class="nav navbar-nav">
-                      <li>
-                        <a href="/"><i class="glyphicons-home"></i> Home </a>
-                      </li>
-                    </ul>
-                  	</nav>
-                </div>
-                <div class='load' id='div1'>
-                  <div class="user" id="user">
-                    <div class="deneme"></div>
-                  <div class="loader" id="loader"></div>
-                    <p class="text"></p>
-                  </div>
-                </div>
-        </div>
-    </div></div>
-</div>
-</pre>
+
 
 <h2>modal load when you click search box or modal unload and visibility hidden when you click without search box </h2>
 <pre>
