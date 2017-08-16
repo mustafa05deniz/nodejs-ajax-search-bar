@@ -49,7 +49,7 @@ for security
     }
 </pre>
 
-<pre>routes.js</pre>
+<h2>routes.js</h2>
 <pre>
 app.post('/search', cors(corsOptions),function(req,res){
         console.log(req);
@@ -68,7 +68,7 @@ app.post('/search', cors(corsOptions),function(req,res){
 </pre>
 <img src="http://kodizim.com/wp-content/uploads/2017/08/entegre2.png" alt="" width="364" height="444" class="aligncenter size-full wp-image-640" />
 <h2>Client Side</h2>
-<pre>index.ejs</pre>
+index.ejs
 <pre>
 <div class="wrapper">
 	<div class="box">
