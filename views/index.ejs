@@ -77,7 +77,7 @@
         else{
           document.getElementById("loader").style.visibility = "visible";
           deger = $(this).val();
-          $( ".username" ).remove();
+          
           data={}
           data.x=deger;
           $.ajax({
@@ -88,10 +88,7 @@
               document.getElementById("loader").style.visibility = "hidden";
               var obj = JSON.parse(data);
               console.log("obj"+obj);
-              $.each(obj, function (index, value) {
-                  console.log("valıue"+value);
-              });
-
+              $( ".username" ).remove();
               obj.forEach(function(element) {
                 console.log(element);
                 $('.deneme').append("<div class='username'><img width='50px;' height='60px;' src='http://project.kodizim.com:3000/public/img/"+element.username+".jpg'/>"+element.username+"</div> ")
