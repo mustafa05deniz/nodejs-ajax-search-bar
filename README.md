@@ -1,5 +1,11 @@
 #tutorial is here : http://kodizim.com
-<pre>
+nodejs ajax search bar with javascript ,juquery and mysql database you can firstly look this project cause this project contain other project <a href="https://kodizim.com/2017/08/10/nodejs-angularjs-mysql-social-project/" target="_blank"></a>
+
+<h2><a href="http://project3.kodizim.com" target="_blank">DEMO project3.kodizim.com</a> </h2> 
+Requirements
+<h2>Server Side </h2>
+<pre>database.js</pre>
+[cc lang="javascript"]
 module.exports = {
     'connection': {
         'host': '127.0.0.1', 
@@ -7,33 +13,44 @@ module.exports = {
         'password': 'pass', // password 
         'database': 'dbname'// database name
     },
-    'database': 'dbname',
+	'database': 'dbname',
 };
-</pre>
+[/cc]
 
-<h4>example sql codes</h4>
-<pre>
+Do you want to insert row your database click this <a href="http://sequel.kodizim.com">link</a> and run querys
+
+example
+[cc lang="sql"]
 CREATE TABLE `users` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(20) NOT NULL,
-  `surname` VARCHAR(20) NOT NULL,
-  `username` VARCHAR(20) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `surname` varchar(20) NOT NULL,
+  `username` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
-</pre>
+[/cc]
 
-<pre>
-INSERT INTO users(name,surname,username) VALUES("Jamie","Lannister","JamieLannister");
-INSERT INTO users(name,surname,username) VALUES("Cercei","Lannister","CerceiLannister");
-INSERT INTO users(name,surname,username) VALUES("Bronn","Bronn","Bronn");
-INSERT INTO users(name,surname,username) VALUES("John","Snow","JohnSnow");
-INSERT INTO users(name,surname,username) VALUES("Daenerys","Targaryen","DaenerysTargaryen");
-INSERT INTO users(name,surname,username) VALUES("Ramsay","Bolton","JamieLannister");
-</pre>
+[cc lang="sql"]
+insert into users(name,surname,username) values("Jamie","Lannister","JamieLannister");
+insert into users(name,surname,username) values("Cercei","Lannister","CerceiLannister");
+insert into users(name,surname,username) values("Bronn","Bronn","Bronn");
+insert into users(name,surname,username) values("John","Snow","JohnSnow");
+insert into users(name,surname,username) values("Daenerys","Targaryen","DaenerysTargaryen");
+insert into users(name,surname,username) values("Ramsay","Bolton","JamieLannister")
+[/cc]
 
-<h4>routes.js</h4>
-<pre>
+
+for security
+[cc lang="javascript"]
+  var corsOptions = {
+        origin: 'http://localhost:3000',
+        optionsSuccessStatus: 200 
+    }
+[/cc]
+
+<pre>routes.js</pre>
+[cc lang="javascript"]
 app.post('/search', cors(corsOptions),function(req,res){
         console.log(req);
         connection.query('SELECT username from users where username like "%'+req.body.value+'%"', function(err, rows, fields) {
@@ -48,4 +65,98 @@ app.post('/search', cors(corsOptions),function(req,res){
               res.end(JSON.stringify(data));
             });
         });
-</pre>
+[/cc]
+<img src="http://kodizim.com/wp-content/uploads/2017/08/entegre2.png" alt="" width="364" height="444" class="aligncenter size-full wp-image-640" />
+<h2>Client Side</h2>
+<pre>index.ejs</pre>
+[cc lang="html"]
+<div class="wrapper">
+		<div class="box">
+			<div class="row row-offcanvas row-offcanvas-left">
+            <div class="column col-sm-12 col-xs-11" id="main">
+              	<div class="navbar navbar-blue navbar-static-top">  
+                    <div class="navbar-header">
+                    	<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+	                        <span class="sr-only">Toggle</span>
+	                        <span class="icon-bar"></span>
+	          				      <span class="icon-bar"></span>
+	          				      <span class="icon-bar"></span></button>
+                    <a href="/" class="navbar-brand logo">l</a>
+                  	</div>
+                    <form class="navbar-form navbar-left">
+                        <div class="input-group input-group-sm" style="width:360px;">
+                          <input type="text" class="form-control"  placeholder="search" name="srch-term" id="search">
+                        </div>
+                    </form>
+                    <ul class="nav navbar-nav">
+                      <li>
+                        <a href="/"><i class="glyphicons-home"></i> Home </a>
+                      </li>
+                    </ul>
+                  	</nav>
+                </div>
+                <div class='load' id='div1'>
+                  <div class="user" id="user">
+                    <div class="deneme"></div>
+                  <div class="loader" id="loader"></div>
+                    <p class="text"></p>
+                  </div>
+                </div>
+        </div>
+    </div></div>
+</div>
+[/cc]
+
+<em>modal load when you click search box or modal unload and visibility hidden when you click without search box </em>
+[cc lang="javascript"]
+var $modal = $('div.load');
+    $('#search').click(function () {
+        console.log("search click");
+        $modal.fadeIn();
+    });
+    $(document).mouseup(function (e) {
+        if (!$(e.target).is('#search *, #search')) {
+            console.log("normal click");
+            $("#user").removeClass("deneme");
+            $modal.fadeOut(100);
+        }
+    });
+[/cc]
+
+<h3><pre>Load element from routes.js http://localhost/search</pre></h3>
+[cc lang="javascript"]
+ $( document ).ready(function() {
+      var key ="";
+      $("#search").on("change paste keyup", function() {
+        var deger ="";
+        if($(this).val() == ""){
+          console.log("boş");
+        }
+        else{
+          document.getElementById("loader").style.visibility = "visible";
+          deger = $(this).val();
+          
+          data={}
+          data.x=deger;
+          $.ajax({
+            type: "POST",
+            url: 'http://project.kodizim.com:3000/search',
+            data:  data,
+            success: function(data) {
+              document.getElementById("loader").style.visibility = "hidden";
+              var obj = JSON.parse(data);
+              console.log("obj"+obj);
+              $( ".username" ).remove();
+              obj.forEach(function(element) {
+                console.log(element);
+                $('.deneme').append("<div class='username'><img width='50px;' height='60px;' src='http://project.kodizim.com:3000/public/img/"+element.username+".jpg'/>"+element.username+"</div> ")
+              }, this);
+              
+            }
+          });
+        }
+      });
+    });
+[/cc]
+
+
